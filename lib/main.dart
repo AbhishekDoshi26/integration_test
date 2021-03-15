@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -30,6 +31,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +61,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        // Provide a Key to this button. This allows finding this
-        // specific button inside the test suite, and tapping it.
-        key: Key('increment'),
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        children: [
+          CupertinoButton(
+            // Provide a Key to this button. This allows finding this
+            // specific button inside the test suite, and tapping it.
+            key: Key('increment'),
+            onPressed: _incrementCounter,
+            child: Icon(Icons.add),
+          ),
+          CupertinoButton(
+            // Provide a Key to this button. This allows finding this
+            // specific button inside the test suite, and tapping it.
+            key: Key('decrement'),
+            onPressed: _decrementCounter,
+            child: Icon(Icons.remove),
+          ),
+        ],
       ),
     );
   }
